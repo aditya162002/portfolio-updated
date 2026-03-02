@@ -43,7 +43,7 @@ const Loader = () => {
         </div>
 
         <p className="text-gray-400 text-xs font-poppins tracking-widest uppercase">
-          Loading Scene
+          cooking...
         </p>
       </div>
     </Html>

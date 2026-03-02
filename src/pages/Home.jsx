@@ -89,9 +89,10 @@ const Home = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [goToPage]);
 
-  // ── Touch swipe ──
+  // ── Touch swipe (skip on hero page — Canvas owns those touches) ──
   const onTouchStart = (e) => { touchX.current = e.touches[0].clientX; };
   const onTouchEnd   = (e) => {
+    if (pageRef.current === 0) return; // hero page: let model drag freely
     const dx = touchX.current - e.changedTouches[0].clientX;
     if (Math.abs(dx) > 50) goToPage(pageRef.current + (dx > 0 ? 1 : -1));
   };
@@ -145,12 +146,11 @@ const Home = () => {
           </div>
 
           {isMobile && (
-            <div className="absolute bottom-20 left-0 right-0 z-10 flex justify-center pointer-events-none">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-                <svg className="w-4 h-4 text-gray-400 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                </svg>
-                <span className="text-gray-400 text-xs tracking-wider">Drag to explore</span>
+            <div className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-2 pointer-events-none">
+              <div className="flex items-center gap-3 px-5 py-2 rounded-full bg-black/50 backdrop-blur-sm border border-white/10">
+                <span className="text-gray-400 text-xs tracking-wide">👆 Drag to rotate</span>
+                <span className="text-white/20 text-xs">|</span>
+                <span className="text-gray-400 text-xs tracking-wide">Use ›  to navigate</span>
               </div>
             </div>
           )}
@@ -159,8 +159,8 @@ const Home = () => {
             className={`w-full h-full ${isRotating ? "cursor-grabbing" : "cursor-grab"}`}
             camera={{ near:0.1, far:1000, position:modelConfig.cameraPos, fov:modelConfig.fov }}
             style={{ background: "black" }}
-            dpr={[1, isMobile ? 1 : 1.5]}
-            gl={{ antialias:false, powerPreference:"high-performance", alpha:false }}
+            dpr={[1, Math.min(window.devicePixelRatio, 2)]}
+            gl={{ antialias: true, powerPreference: "high-performance", alpha: false }}
           >
             <Suspense fallback={<Loader />}>
               <ambientLight intensity={0.5} />
