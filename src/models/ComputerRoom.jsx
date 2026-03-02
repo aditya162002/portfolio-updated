@@ -64,57 +64,49 @@ export function ComputerRoom({
 
   const { gl } = useThree()
 
-  const getXY = (e) => {
-    if (e.touches && e.touches.length > 0) {
-      return { x: e.touches[0].clientX, y: e.touches[0].clientY }
-    }
-    return { x: e.clientX, y: e.clientY }
-  }
-
-  const onDown = useCallback((e) => {
-    if (e.cancelable) e.preventDefault()
+  // ── Use ONLY Pointer Events (handles both mouse & touch uniformly) ──
+  const onPointerDown = useCallback((e) => {
+    e.preventDefault()
+    // Capture pointer so pointermove keeps firing even if finger leaves the element
+    try { e.target.setPointerCapture(e.pointerId) } catch (_) {}
     isDragging.current = true
     setIsRotating(true)
-    const { x, y } = getXY(e)
-    prevPointer.current = { x, y }
+    prevPointer.current = { x: e.clientX, y: e.clientY }
     velocity.current = { x: 0, y: 0 }
   }, [setIsRotating])
 
-  const onMove = useCallback((e) => {
+  const onPointerMove = useCallback((e) => {
     if (!isDragging.current) return
-    if (e.cancelable) e.preventDefault()
-    const { x, y } = getXY(e)
-    const dx = x - prevPointer.current.x
-    const dy = y - prevPointer.current.y
+    e.preventDefault()
+    const dx = e.clientX - prevPointer.current.x
+    const dy = e.clientY - prevPointer.current.y
     velocity.current.y = dx * DRAG_SPEED
     velocity.current.x = dy * DRAG_SPEED * 0.4
-    prevPointer.current = { x, y }
+    prevPointer.current = { x: e.clientX, y: e.clientY }
   }, [])
 
-  const onUp = useCallback(() => {
+  const onPointerUp = useCallback((e) => {
+    try { e.target.releasePointerCapture(e.pointerId) } catch (_) {}
     isDragging.current = false
     setIsRotating(false)
   }, [setIsRotating])
 
   React.useEffect(() => {
     const c = gl.domElement
-    c.addEventListener('pointerdown', onDown, { passive: false })
-    c.addEventListener('pointermove', onMove, { passive: false })
-    c.addEventListener('pointerup',   onUp)
-    c.addEventListener('pointercancel', onUp)
-    c.addEventListener('touchstart', onDown, { passive: false })
-    c.addEventListener('touchmove',  onMove, { passive: false })
-    c.addEventListener('touchend',   onUp)
+    // Pointer events cover mouse + touch + stylus in one unified API
+    c.addEventListener('pointerdown',  onPointerDown, { passive: false })
+    c.addEventListener('pointermove',  onPointerMove, { passive: false })
+    c.addEventListener('pointerup',    onPointerUp)
+    c.addEventListener('pointercancel', onPointerUp)
+    c.addEventListener('pointerleave', onPointerUp)
     return () => {
-      c.removeEventListener('pointerdown',   onDown)
-      c.removeEventListener('pointermove',   onMove)
-      c.removeEventListener('pointerup',     onUp)
-      c.removeEventListener('pointercancel', onUp)
-      c.removeEventListener('touchstart',    onDown)
-      c.removeEventListener('touchmove',     onMove)
-      c.removeEventListener('touchend',      onUp)
+      c.removeEventListener('pointerdown',   onPointerDown)
+      c.removeEventListener('pointermove',   onPointerMove)
+      c.removeEventListener('pointerup',     onPointerUp)
+      c.removeEventListener('pointercancel', onPointerUp)
+      c.removeEventListener('pointerleave',  onPointerUp)
     }
-  }, [gl, onDown, onMove, onUp])
+  }, [gl, onPointerDown, onPointerMove, onPointerUp])
 
   useFrame((_, delta) => {
     if (!groupRef.current) return

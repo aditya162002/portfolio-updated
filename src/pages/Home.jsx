@@ -125,7 +125,7 @@ const Home = () => {
         {/* ─── PAGE 0 : Hero ─── */}
         <section
           ref={(el) => (sectionRefs.current[0] = el)}
-          style={{ ...pageStyle, overflow: "hidden", position: "relative", background: "black" }}
+          style={{ ...pageStyle, overflow: "hidden", position: "relative", background: "black", touchAction: "none" }}
         >
           <div
             className="absolute left-0 right-0 z-10 flex items-center justify-center px-4"
@@ -147,7 +147,7 @@ const Home = () => {
           <Canvas
             className={`w-full h-full ${isRotating ? "cursor-grabbing" : "cursor-grab"}`}
             camera={{ near:0.1, far:1000, position:modelConfig.cameraPos, fov:modelConfig.fov }}
-            style={{ background: "black" }}
+            style={{ background: "black", touchAction: "none" }}
             dpr={[1, Math.min(window.devicePixelRatio, 2)]}
             gl={{ antialias: true, powerPreference: "high-performance", alpha: false }}
           >
