@@ -25,7 +25,6 @@ const Home = () => {
   const outerRef    = useRef(null);
   const sectionRefs = useRef([]);
   const pageRef     = useRef(0);        // always-current page, no stale closure
-  const touchX      = useRef(0);
   // Gesture state: one scroll gesture = one page move
   const gesture     = useRef({ handled: false, timer: null });
 
@@ -89,14 +88,6 @@ const Home = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [goToPage]);
 
-  // ── Touch swipe (skip on hero page — Canvas owns those touches) ──
-  const onTouchStart = (e) => { touchX.current = e.touches[0].clientX; };
-  const onTouchEnd   = (e) => {
-    if (pageRef.current === 0) return; // hero page: let model drag freely
-    const dx = touchX.current - e.changedTouches[0].clientX;
-    if (Math.abs(dx) > 50) goToPage(pageRef.current + (dx > 0 ? 1 : -1));
-  };
-
   const getModelConfig = () => {
     const w = window.innerWidth;
     if (w < 480)  return { scale: [0.55,0.55,0.55], position:[0,-0.5,0], fov:50, cameraPos:[0,1,7] };
@@ -117,8 +108,6 @@ const Home = () => {
   return (
     <div
       ref={outerRef}
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
       style={{ position: "fixed", inset: 0, background: "black", overflow: "hidden" }}
     >
       {/* ── Sliding track (CSS transform, no native scroll) ── */}
@@ -146,11 +135,11 @@ const Home = () => {
           </div>
 
           {isMobile && (
-            <div className="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-2 pointer-events-none">
+            <div className="absolute bottom-14 left-0 right-0 z-10 flex justify-center pointer-events-none">
               <div className="flex items-center gap-3 px-5 py-2 rounded-full bg-black/50 backdrop-blur-sm border border-white/10">
-                <span className="text-gray-400 text-xs tracking-wide">👆 Drag to rotate</span>
-                <span className="text-white/20 text-xs">|</span>
-                <span className="text-gray-400 text-xs tracking-wide">Use ›  to navigate</span>
+                <span className="text-gray-400 text-xs tracking-wide">👆 Touch &amp; drag to rotate</span>
+                <span className="text-white/20 text-xs">·</span>
+                <span className="text-gray-400 text-xs tracking-wide">Tap dots to navigate</span>
               </div>
             </div>
           )}
@@ -424,23 +413,33 @@ const Home = () => {
 
       {/* ─── Navigation Dots ─── */}
       <div style={{
-        position: "fixed", bottom: "24px", left: "50%", transform: "translateX(-50%)",
-        display: "flex", alignItems: "center", gap: "8px", zIndex: 100,
-        padding: "8px 16px", borderRadius: "20px",
-        background: "rgba(0,0,0,0.5)", backdropFilter: "blur(12px)",
-        border: "1px solid rgba(255,255,255,0.08)",
+        position: "fixed", bottom: isMobile ? "16px" : "24px", left: "50%", transform: "translateX(-50%)",
+        display: "flex", alignItems: "center", gap: isMobile ? "10px" : "8px", zIndex: 100,
+        padding: isMobile ? "10px 20px" : "8px 16px", borderRadius: "20px",
+        background: "rgba(0,0,0,0.6)", backdropFilter: "blur(12px)",
+        border: "1px solid rgba(255,255,255,0.1)",
       }}>
         {PAGE_LABELS.map((label, i) => (
-          <button key={i} onClick={() => goToPage(i)} title={label} style={{
-            width: currentPage === i ? "20px" : "6px", height: "6px", borderRadius: "3px",
-            background: currentPage === i ? "white" : "rgba(255,255,255,0.25)",
-            border: "none", cursor: "pointer", transition: "all 0.3s ease", padding: 0,
-          }} />
+          <button
+            key={i}
+            onClick={() => goToPage(i)}
+            title={label}
+            style={{
+              /* larger hit-area on mobile via padding trick */
+              width: currentPage === i ? (isMobile ? "24px" : "20px") : (isMobile ? "8px" : "6px"),
+              height: isMobile ? "8px" : "6px",
+              borderRadius: "4px",
+              background: currentPage === i ? "white" : "rgba(255,255,255,0.3)",
+              border: "none", cursor: "pointer", transition: "all 0.3s ease", padding: 0,
+              /* larger invisible tap zone on mobile */
+              outline: "8px solid transparent",
+            }}
+          />
         ))}
       </div>
 
-      {/* ─── Left Arrow ─── */}
-      {currentPage > 0 && (
+      {/* ─── Left Arrow — desktop only ─── */}
+      {!isMobile && currentPage > 0 && (
         <button onClick={() => goToPage(currentPage - 1)} style={{
           position:"fixed", left:"16px", top:"50%", transform:"translateY(-50%)", zIndex:100,
           background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.1)",
@@ -450,8 +449,8 @@ const Home = () => {
         }}>‹</button>
       )}
 
-      {/* ─── Right Arrow ─── */}
-      {currentPage < TOTAL_PAGES - 1 && (
+      {/* ─── Right Arrow — desktop only ─── */}
+      {!isMobile && currentPage < TOTAL_PAGES - 1 && (
         <button onClick={() => goToPage(currentPage + 1)} style={{
           position:"fixed", right:"16px", top:"50%", transform:"translateY(-50%)", zIndex:100,
           background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.1)",
