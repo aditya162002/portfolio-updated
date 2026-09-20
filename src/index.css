@@ -11,10 +11,16 @@
 :root {
   --blue-rgb: 237 245 255;
   --green-rgb: 125 161 35;
+  --bg: #050505;
+  --accent: #38bdf8;
 }
 
 body {
   font-family: "Work Sans", sans-serif;
+  background: var(--bg);
+  color: #e5e7eb;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body:has(.card[data-color="blue"]:hover) {
@@ -48,6 +54,14 @@ body:has(.card[data-color="green"]:hover) {
 
   .textarea {
     @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-200 focus:ring-blue-500 focus:border-blue-500 mt-2.5 font-normal shadow-card;
+  }
+
+  .dark-input {
+    @apply block w-full mt-2 px-4 py-3 text-sm text-white rounded-xl font-normal
+      bg-white/[0.04] border border-white/10
+      placeholder:text-gray-600
+      focus:outline-none focus:ring-1 focus:ring-sky-400/40 focus:border-sky-400/40
+      transition-colors;
   }
 
   .btn {
@@ -94,8 +108,6 @@ body:has(.card[data-color="green"]:hover) {
 .logo {
   border-radius: 8.889px;
   background: #fff;
-  /* box-shadow: 0px 10px 35px -4px rgba(67, 83, 255, 0.15),
-    0px 1.5px 4px -1px rgba(67, 83, 255, 0.2); */
 }
 
 .block-container {
@@ -115,7 +127,6 @@ body:has(.card[data-color="green"]:hover) {
   transform-origin: bottom right;
   transform: rotateZ(15deg);
   will-change: transform;
-  /* box-shadow: 16px 0 40px #e4e4e4; */
 }
 
 .block-container .btn-back-red {
@@ -152,7 +163,7 @@ body:has(.card[data-color="green"]:hover) {
   z-index: 1;
   width: inherit;
   height: inherit;
-  background-color: #ffffff33;
+  background-color: #ffffff22;
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   transition: 250ms;
@@ -169,34 +180,23 @@ body:has(.card[data-color="green"]:hover) {
   transform: translateZ(80px) translateY(-5px) rotateX(15deg) rotateY(15deg);
 }
 
-/* Neo Brutalism */
 .neo-brutalism-blue {
   background: linear-gradient(to right, #111111, #1a1a1a);
   position: relative;
   border-radius: 10px;
   border: black;
-  /* box-shadow: 0.6vmin 0.6vmin #336cc1, 1vmin 1vmin #0092db, 1vmin 1vmin #0092db,
-    0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db; */
 }
 
 .neo-brutalism-white {
   background: #fff;
   border: #fff;
-  /* box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
-    0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff; */
 }
 
-/* Loader spinner animation */
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* Vertical timeline dark overrides */
 .vertical-timeline::before {
   background: rgba(255, 255, 255, 0.06) !important;
 }
@@ -205,45 +205,36 @@ body:has(.card[data-color="green"]:hover) {
   color: #6b7280 !important;
 }
 
-/* Custom scrollbar */
+.vertical-timeline-element-content {
+  box-shadow: none !important;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #000;
+  background: #050505;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.22);
 }
 
-/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Scroll hint animations */
-@keyframes scrollBounce {
-  0%, 100% { transform: translateY(0);   opacity: 0.8; }
-  50%       { transform: translateY(6px); opacity: 1;   }
-}
-
-@keyframes scrollHintFade {
-  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0);   }
-}
-
-/* ── Typewriter name animation ── */
 @keyframes typewriter {
   from { max-width: 0; }
   to   { max-width: 20em; }
 }
+
 @keyframes blinkingCursor {
   from { border-right-color: #c8c8c8; }
   to   { border-right-color: transparent; }
@@ -272,4 +263,36 @@ html {
   animation:
     typewriter 2.8s steps(18, end) 0.4s 1 normal forwards,
     blinkingCursor 500ms steps(1) infinite;
+}
+
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  font-size: 22px;
+  line-height: 1;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.35);
+  color: #fff;
 }

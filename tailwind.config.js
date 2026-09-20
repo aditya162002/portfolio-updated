@@ -11,12 +11,9 @@ export default {
           200: "#D5DAE1"
         },
         black: {
-          DEFAULT: "#000",
+          DEFAULT: "#050505",
           500: "#1D2235"
         },
-        blue: {
-          500: "grey"
-        }
       },
       fontFamily: {
         worksans: ["Work Sans", "sans-serif"],
