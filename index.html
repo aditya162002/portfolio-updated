@@ -1,14 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Aditya Bhadauria — Senior Software Engineer. Full-stack, computer vision & AI systems." />
-    <title>Aditya Bhadauria | Senior Software Engineer</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aditya Bhadauria · Software Engineer</title>
+<meta name="description" content="Aditya Bhadauria, software engineer. I build AI agents, RAG systems and computer vision pipelines, and I measure them with real evaluation benchmarks before they ship.">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="preload" as="image" href="/face/0.webp">
+</head>
+<body>
+
+<div data-stage class="stage">
+
+  <div data-progress class="progress"></div>
+
+  <div data-halo class="halo"></div>
+  <div data-ring class="ring"></div>
+
+  <!-- One big word behind each scene, in scene order -->
+  <div data-words class="words">
+    <div data-word>HELLO</div>
+    <div data-word>YOU</div>
+    <div data-word>SHIPPED</div>
+    <div data-word>SEE</div>
+    <div data-word>THINK</div>
+    <div data-word>WOW</div>
+    <div data-word>BUILD</div>
+    <div data-word>STACK</div>
+    <div data-word>SIUUU</div>
+    <div data-word class="blue">COOL</div>
+  </div>
+
+  <!-- Chips that orbit the head. data-orbit = scene index -->
+  <div data-orbit="0" data-a="200" data-r="1" class="orb dark">AI agents</div>
+  <div data-orbit="0" data-a="320" data-r="1.05" class="orb">RAG &amp; evals</div>
+  <div data-orbit="0" data-a="80" data-r="1.1" class="orb">Computer vision</div>
+
+  <div data-orbit="2" data-a="210" data-r="1.05" class="orb dark">Backgammon Galaxy</div>
+  <div data-orbit="2" data-a="330" data-r="1.05" class="orb">Amplytic · Antler ’25</div>
+  <div data-orbit="2" data-a="90" data-r="1.12" class="orb blue">Nineleaps</div>
+
+  <div data-orbit="3" data-a="190" data-r="1" class="orb dark">RF-DETR</div>
+  <div data-orbit="3" data-a="250" data-r="1.08" class="orb">YOLO</div>
+  <div data-orbit="3" data-a="310" data-r="1.04" class="orb blue">Temporal transformer</div>
+  <div data-orbit="3" data-a="20" data-r="1.12" class="orb">Kubernetes</div>
+  <div data-orbit="3" data-a="110" data-r="1.1" class="orb dark">Hybrid GPU/CPU</div>
+
+  <div data-orbit="4" data-a="190" data-r="1" class="orb dark">RAG</div>
+  <div data-orbit="4" data-a="250" data-r="1.08" class="orb">AI agents</div>
+  <div data-orbit="4" data-a="310" data-r="1.04" class="orb blue">Eval benchmarks</div>
+  <div data-orbit="4" data-a="20" data-r="1.12" class="orb">NDCG</div>
+  <div data-orbit="4" data-a="110" data-r="1.1" class="orb dark">Knowledge graphs</div>
+
+  <div data-orbit="8" data-a="200" data-r="1.02" class="orb dark">CR7</div>
+  <div data-orbit="8" data-a="265" data-r="1.1" class="orb blue">Real Madrid</div>
+  <div data-orbit="8" data-a="330" data-r="1.05" class="orb">Boxing 🥊</div>
+  <div data-orbit="8" data-a="30" data-r="1.12" class="orb">Chess ♞</div>
+  <div data-orbit="8" data-a="110" data-r="1.08" class="orb dark">100m · 200m</div>
+
+  <!-- Tools that fall in on the toolkit scene -->
+  <div data-rain data-x="6" data-y="150" data-rot="-8" class="rain">Python</div>
+  <div data-rain data-x="15" data-y="108" data-rot="6" class="rain dark">TypeScript</div>
+  <div data-rain data-x="4" data-y="64" data-rot="3" class="rain blue">PyTorch</div>
+  <div data-rain data-x="17" data-y="62" data-rot="-5" class="rain">Kubernetes</div>
+  <div data-rain data-x="9" data-y="22" data-rot="-2" class="rain">FastAPI</div>
+  <div data-rain data-x="22" data-y="20" data-rot="8" class="rain dark">RAG</div>
+  <div data-rain data-x="72" data-y="150" data-rot="7" class="rain">gRPC</div>
+  <div data-rain data-x="80" data-y="106" data-rot="-6" class="rain blue">RabbitMQ</div>
+  <div data-rain data-x="70" data-y="62" data-rot="-3" class="rain dark">Neo4j</div>
+  <div data-rain data-x="84" data-y="60" data-rot="5" class="rain">PostgreSQL</div>
+  <div data-rain data-x="74" data-y="20" data-rot="2" class="rain">Docker</div>
+  <div data-rain data-x="86" data-y="18" data-rot="-7" class="rain dark">GCP</div>
+
+  <div data-face class="face">
+    <div data-face-inner class="face-inner">
+      <img data-frame src="/face/0.webp" alt="Aditya Bhadauria">
+      <img data-frame src="/face/1.webp" alt="" style="opacity:0">
+      <img data-frame src="/face/2.webp" alt="" style="opacity:0">
+      <img data-frame src="/face/3.webp" alt="" style="opacity:0">
+      <img data-frame src="/face/4.webp" alt="" style="opacity:0">
+      <img data-frame src="/face/5.webp" alt="" style="opacity:0">
+      <img data-frame src="/face/6.webp" alt="" style="opacity:0">
+      <img data-frame src="/face/7.webp" alt="" style="opacity:0">
+    </div>
+  </div>
+
+  <div data-bubble class="bubble"><div><span data-quip>Hi, I’m Aditya.</span></div></div>
+
+  <!-- ============ SCENES (the story, in order) ============ -->
+
+  <!-- 0 · Hello: who I am -->
+  <section data-scene data-label="Hello" class="scene" style="visibility:visible;pointer-events:none">
+    <div class="col gap18">
+      <span data-k class="lbl">Senior Software Engineer</span>
+      <h1 class="name"><span data-k>Aditya</span><span data-k>Bhadauria<span class="blue-t">.</span></span></h1>
+    </div>
+    <div class="spacer"></div>
+    <div class="col gap18 hero-right">
+      <p data-k class="lead big-lead">I build systems that work.</p>
+      <span data-k class="now wide"><i></i>Currently at Backgammon Galaxy</span>
+      <span data-k class="lbl hint-row"><span data-hint class="hint"></span>Scroll, my face changes too</span>
+    </div>
+  </section>
+
+  <!-- 1 · About: the short version -->
+  <section data-scene data-label="About" class="scene">
+    <div class="col gap18">
+      <span data-k class="lbl">(01) About me</span>
+      <p data-k class="about"><span data-fill class="fill">I’m a software engineer from India. Since 2022 I’ve built AI, computer vision and backend systems for teams in Spain and the UK. Here’s the story.</span></p>
+    </div>
+    <div class="spacer"></div>
+    <div class="table wide">
+      <div data-k class="row"><span>Based in</span><span>India</span></div>
+      <div data-k class="row"><span>Works with</span><span>Teams in Spain &amp; UK</span></div>
+      <div data-k class="row"><span>Studied</span><span>B.E. Computer Science, Graphic Era</span></div>
+      <div data-k class="row"><span>Status</span><span class="blue-t">Open to new roles</span></div>
+    </div>
+  </section>
+
+  <!-- 2 · Experience: where I've worked -->
+  <section data-scene data-label="Experience" class="scene">
+    <div class="col">
+      <span data-k class="lbl">(02) Where I’ve worked</span>
+      <h2 data-k class="h2">Three teams. <span class="serif">Shipped</span> at all of them.</h2>
+      <div class="jobs" data-cos>
+        <div data-k data-co="0" class="job"><b>Backgammon Galaxy</b><span class="when">2023 — now</span><span class="where">Senior Software Engineer · Remote, Spain</span><span class="what">Computer vision, backend and AI coach</span></div>
+        <div data-k data-co="1" class="job"><b>Amplytic <span class="serif muted">Antler ’25</span></b><span class="when">2025 — 26</span><span class="where">Software Consultant · Remote, London</span><span class="what">AI agents, RAG and evals</span></div>
+        <div data-k data-co="2" class="job"><b>Nineleaps</b><span class="when">2022 — 23</span><span class="where">Software Developer · Bangalore</span><span class="what">Real-time water dashboard</span></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="col side wide">
+      <span data-k class="lbl">What I did there</span>
+      <div class="hls">
+        <div data-k data-co="0" class="hl"><span>—</span><p><b>Backgammon Galaxy</b> Built the computer vision that turns match videos into games, the backend the platform runs on, and an AI coach.</p></div>
+        <div data-k data-co="1" class="hl"><span>—</span><p><b>Amplytic</b> Built AI agents and RAG search for asset managers, plus the evals that measure them.</p></div>
+        <div data-k data-co="2" class="hl"><span>—</span><p><b>Nineleaps</b> Built a real-time dashboard that helps cities find water leaks faster.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Chapter: Backgammon Galaxy -->
+  <section data-scene data-label="Backgammon Galaxy" class="scene">
+    <div class="col">
+      <span data-k class="lbl">(03) At Backgammon Galaxy · 2023 — now</span>
+      <h2 data-k class="h2">Teaching a machine to <span class="serif">read</span> backgammon.</h2>
+      <div data-steps class="steps">
+        <div data-k data-step class="step"><span class="n">01</span><span class="t">Record</span><span></span><span class="d">Match videos go into a video-to-transcript pipeline.</span></div>
+        <div data-k data-step class="step"><span class="n">02</span><span class="t">Detect</span><span></span><span class="d">Fine-tuned RF-DETR and YOLO find the board, checkers and dice.</span></div>
+        <div data-k data-step class="step"><span class="n">03</span><span class="t">Read over time</span><span></span><span class="d">A temporal transformer looks at several frames, so blur and hands in the way don’t break it.</span></div>
+        <div data-k data-step class="step"><span class="n">04</span><span class="t">Check</span><span></span><span class="d">Tracking and move checks make sure every game is legal.</span></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="col side wide">
+      <span data-k class="lbl">The result</span>
+      <p data-k class="outcome">1,000+ matches a day, at <span class="blue-t">65% lower GPU cost</span>.</p>
+      <span data-k class="lbl">I also built</span>
+      <div class="hls">
+        <div data-k class="hl"><span>—</span>The Kubernetes backend, running at 99.9% uptime.</div>
+        <div data-k class="hl"><span>—</span>Async APIs that went from over 60s to under 15s.</div>
+        <div data-k class="hl"><span>—</span>An AI coach that explains <i>why</i> a move was a mistake.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Chapter: Amplytic -->
+  <section data-scene data-label="Amplytic" class="scene">
+    <div class="col">
+      <span data-k class="lbl">(04) At Amplytic · 2025 — 26</span>
+      <h2 data-k class="h2">AI that <span class="serif">shows</span> its work.</h2>
+      <div data-steps class="steps">
+        <div data-k data-step class="step"><span class="n">01</span><span class="t">Retrieve</span><span></span><span class="d">Find the right facts in reports, documents and a Neo4j knowledge graph.</span></div>
+        <div data-k data-step class="step"><span class="n">02</span><span class="t">Reason</span><span></span><span class="d">Agents work through the question step by step, using tools when they need to.</span></div>
+        <div data-k data-step class="step"><span class="n">03</span><span class="t">Verify</span><span></span><span class="d">Answers are checked against their sources before they’re saved.</span></div>
+        <div data-k data-step class="step"><span class="n">04</span><span class="t">Measure</span><span></span><span class="d">An NDCG eval framework scores search quality after every change.</span></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="col side wide">
+      <span data-k class="lbl">My rule</span>
+      <p data-k class="outcome">If I can’t <span class="blue-t">measure</span> it, I don’t ship it.</p>
+      <span data-k class="lbl">I also built</span>
+      <div class="hls">
+        <div data-k class="hl"><span>—</span>An AI agent that automates daily work for asset managers.</div>
+        <div data-k class="hl"><span>—</span>Data pipelines on GCP handling 500K+ data points a day.</div>
+        <div data-k class="hl"><span>—</span>A FastAPI backend with under 100ms P99 latency.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Results -->
+  <section data-scene data-label="Results" class="scene">
+    <div class="col stats">
+      <span data-k class="lbl">(05) The results</span>
+      <div data-k class="stat"><b><span data-count="1000" data-sep="1">0</span><em>+</em></b><span>matches read every day · Backgammon Galaxy</span></div>
+      <div data-k class="stat"><b><span data-count="500" data-suffix="K">0</span><em>+</em></b><span>data points a day · Amplytic</span></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="col stats stats-r">
+      <div data-k class="stat"><b><span data-count="99.9" data-dec="1">0</span><em>%</em></b><span>uptime · Backgammon Galaxy</span></div>
+      <div data-k class="stat"><b><em>&lt;</em><span data-count="100">0</span><small>ms</small></b><span>P99 API latency · Amplytic</span></div>
+      <div data-k class="stat stat-sm wide"><b><span data-count="20">0</span><em>%</em></b><span>faster leak detection · Nineleaps</span></div>
+    </div>
+  </section>
+
+  <!-- 6 · Side projects -->
+  <section data-scene data-label="Side projects" class="scene">
+    <div class="col">
+      <span data-k class="lbl">(06) Side projects</span>
+      <h2 data-k class="h2">Coffee in. <span class="serif">Software out.</span></h2>
+      <span data-k class="sub wide">Open source and things I build after work, usually after the second cup.</span>
+    </div>
+    <div class="spacer"></div>
+    <div data-k class="track-wrap">
+      <div data-track class="track">
+        <a class="card c-dark" href="https://github.com/aditya162002/nodeflow" target="_blank" rel="noopener"><span class="meta"><span>01 · OPEN SOURCE</span><span>↗</span></span><b>Nodeflow</b><span class="desc">Turns any codebase into a knowledge graph that you, or your AI agent, can search.</span></a>
+        <a class="card c-blue" href="https://datacurve.ai" target="_blank" rel="noopener"><span class="meta"><span>02 · AGENT EVALS</span><span>↗</span></span><b>Datacurve.ai</b><span class="desc">Built benchmarks that test how well AI agents really perform.</span></a>
+        <a class="card" href="https://fitcurry.shop/" target="_blank" rel="noopener"><span class="meta"><span>03 · RECOMMENDATIONS</span><span>↗</span></span><b>AI Fashion Platform</b><span class="desc">Personalised outfits, picked by a recommendation system.</span></a>
+        <a class="card" href="https://github.com/onlook-dev/onlook" target="_blank" rel="noopener"><span class="meta"><span>04 · CONTRIBUTIONS</span><span>↗</span></span><b>Onlook <span class="serif blue-t">(YC S25)</span></b><span class="desc">Open-source contributions to the visual editor for React apps.</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · Toolkit -->
+  <section data-scene data-label="Toolkit" class="scene">
+    <div class="col">
+      <span data-k class="lbl">(07) Toolkit</span>
+      <h2 data-k class="h2">Too many tools. <span class="serif">I use them all.</span></h2>
+    </div>
+    <div class="spacer"></div>
+    <div class="table wide tk">
+      <div data-k class="row"><span>AI</span><span>RAG, AI agents, eval benchmarks (NDCG), Transformers</span></div>
+      <div data-k class="row"><span>Vision</span><span>PyTorch, RF-DETR, YOLO, OpenCV</span></div>
+      <div data-k class="row"><span>Languages</span><span>Python, TypeScript, C/C++, Java, Rust, SQL</span></div>
+      <div data-k class="row"><span>Web</span><span>React, Next.js, Node.js, FastAPI</span></div>
+      <div data-k class="row"><span>Data</span><span>PostgreSQL, MongoDB, Neo4j, RabbitMQ, gRPC</span></div>
+      <div data-k class="row"><span>Infra</span><span>Kubernetes, Docker, Helm, AWS, GCP, Prometheus, Grafana</span></div>
+    </div>
+  </section>
+
+  <!-- 8 · Hobbies -->
+  <section data-scene data-label="Off the clock" class="scene">
+    <div class="col">
+      <span data-k class="lbl">(08) Off the clock</span>
+      <h2 data-k class="h2">When I’m not <span class="serif">coding.</span></h2>
+      <div class="hob">
+        <div data-k class="hob-row"><b>Athletics</b><span>U17 &amp; U19 state level, 100m &amp; 200m</span></div>
+        <div data-k class="hob-row"><b>Football</b><span>U17 &amp; U19 state level</span></div>
+        <div data-k class="hob-row"><b>Chess</b><span>District level, still play for fun</span></div>
+        <div data-k class="hob-row"><b>Boxing</b><span>Big fan. I’ll step into the ring one day.</span></div>
+        <div data-k class="hob-row phone-only"><b>Favourites</b><span>Ronaldo, the GOAT. Real Madrid, always.</span></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="col side wide">
+      <span data-k class="lbl">My favourites</span>
+      <p data-k class="outcome">Cristiano Ronaldo is the <span class="blue-t">GOAT</span>. And it’s always Real Madrid.</p>
+      <p data-k class="serif fav">¡Hala Madrid!</p>
+    </div>
+  </section>
+
+  <!-- 9 · Contact -->
+  <section data-scene data-label="Contact" class="scene contact">
+    <div class="col">
+      <span data-k class="lbl">(09) Say hi</span>
+      <h2 class="big"><span data-k>Let’s build</span><span data-k>something <span class="serif">cool.</span></span></h2>
+    </div>
+    <div class="spacer"></div>
+    <div class="links">
+      <a data-k href="mailto:adityabhadauria162002@gmail.com"><span>adityabhadauria162002@gmail.com</span><span>↗</span></a>
+      <a data-k href="tel:+916388342900"><span>+91 63883 42900</span><span>↗</span></a>
+      <a data-k href="https://github.com/aditya162002" target="_blank" rel="noopener"><span>GitHub</span><span>↗</span></a>
+      <a data-k href="https://www.linkedin.com/in/aditya-bhadauria-016a771b9/" target="_blank" rel="noopener"><span>LinkedIn</span><span>↗</span></a>
+      <a data-k href="/Resume_AdityaBhadauria.pdf" target="_blank" rel="noopener"><span>Resume (PDF)</span><span>↗</span></a>
+    </div>
+  </section>
+
+  <nav data-nav class="nav">
+    <a href="#" data-go="0" class="brand"><span>AB</span>Aditya Bhadauria</a>
+    <a href="#" data-go="last" data-cta class="cta">Let’s talk <span>→</span></a>
+  </nav>
+
+  <!-- Side dots are built from the scenes in main.js -->
+  <div data-index class="index"></div>
+</div>
+
+<div data-spacer style="height:1200vh"></div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
 </html>
